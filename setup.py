@@ -30,7 +30,9 @@ def all_folders(search: str, transformation_type: str) -> list:
     folder_names.extend(
         [
             "filters/" + f
-            for f in list(OperationRuns.get_all_folder_names("filters"))
+            for f in list(
+                OperationRuns.get_all_folder_names(search, transformation_type)
+            )
         ]
     )
     return folder_names
@@ -62,9 +64,12 @@ setup(
     version="0.0.1",
     description="The official repository of transformations.",
     long_description=read("README.md"),
-    install_requires=recursive_requirements(
-        "transformations", "light"
-    ),  # read("requirements.txt") for light transformations and all filters
+    install_requires=[
+        recursive_requirements("transformations", "light"),
+        recursive_requirements(
+            "filters", "light"
+        ),  # read("requirements.txt") for light transformations and all filters
+    ],
     package_data={
         "": ["*.json", "*.txt", "*.tsv", "*.csv", "*.npz", "*.ckpt"]
     },
