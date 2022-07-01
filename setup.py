@@ -142,6 +142,13 @@ def get_extra_requirements() -> dict:
             requirements[entry] = filter_requirements(req_string)
     return requirements
 
+# This is a hack for the nltk lookup error for omw-1.4
+class NLTKDownload(install):
+    def run(self):
+        self.do_egg_install()
+        import nltk
+        # Download the missing corpora
+        nltk.download('omw-1.4')
 
 setup(
     name=NAME,
@@ -183,4 +190,5 @@ setup(
     },
     include_package_data=True,
     python_requires=">=3.7",
+    cmdclass={'download_nltk': NLTKDownload()}
 )
