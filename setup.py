@@ -191,5 +191,5 @@ setup(
     },
     include_package_data=True,
     python_requires=">=3.7",
-    cmdclass={'download_nltk': NLTKDownload()}
+    cmdclass={'download_nltk': NLTKDownload}
 )
