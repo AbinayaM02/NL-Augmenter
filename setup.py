@@ -1,6 +1,7 @@
 import os
 
 from setuptools import find_packages, setup
+from setuptools.command.install import install as _install
 
 from nlaugmenter import __version__
 from nlaugmenter.evaluation.TestRunner import OperationRuns
