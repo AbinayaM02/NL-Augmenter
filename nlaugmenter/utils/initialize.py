@@ -18,7 +18,7 @@ def initialize_models():
     global glove
 
     # load spacy
-    spacy_nlp = spacy.load("en_core_web_sm")
+    spacy_nlp = spacy.load("en_core_web_sm", disable=["lemmatizer"]) # disabling the warnings for lemmatizer seen during CI/CD and installation
 
     # load glove
     glove = vocab.GloVe(name="6B", dim="100")
